@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:weightSum="5"
     tools:context=".ui.home.HomeFragment">
 
 
@@ -11,582 +12,616 @@
         android:id="@+id/gl_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="200dp"
+        android:layout_weight="4"
+        android:background="#000000"
         android:columnCount="7"
-        android:rowCount="10"
-        android:background = "#000000"
         android:horizontalSpacing="1dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:rowCount="10"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/T1"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T2"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T3"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T4"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T5"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T6"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T7"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T8"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T9"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T10"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T11"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T12"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T13"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T14"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T15"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T16"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T17"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T18"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T19"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T20"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T21"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T22"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T23"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T24"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T25"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T26"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T27"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T28"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T29"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T30"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T31"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T32"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T33"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T34"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T35"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T36"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T37"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T38"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T39"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T40"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T41"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T42"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T43"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T44"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T45"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T46"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T47"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T48"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T49"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T50"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T51"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T52"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T53"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T54"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T55"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T56"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T57"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T58"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T59"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T60"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T61"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T62"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T63"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T64"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T65"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T66"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T67"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T68"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T69"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/T70"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_margin="1dp"
             android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_margin="1dp" />
+            android:gravity="center" />
 
     </GridLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="120dp"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:translationZ="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:layout_marginBottom="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="224dp"
+            android:layout_marginBottom="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
