@@ -1,6 +1,8 @@
 package com.example.tetris.resource
 
-class Board(val row: Int, val column: Int) {
-    var board: Array<Array<Int>> = Array(row) {Array(column) {0} }
+import android.widget.TextView
+
+class Board(private val row: Int, private val column: Int) {
+    var board: Array<Array<TextView?>> = Array(row) { Array(column) { null } }
 
 }

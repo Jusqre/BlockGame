@@ -20,6 +20,8 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    var textViewSet = mutableListOf<TextView>()
+    var board = Board(11, 8).board
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,22 +43,39 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        var textViewSet= mutableListOf<TextView>()
+
 
         for (i in 1..70) {
-            var tv = view?.findViewById<TextView>(resources.getIdentifier("T${i}","id", context?.packageName ?: "com.example.tetris"))
+            var tv = view?.findViewById<TextView>(
+                resources.getIdentifier(
+                    "T${i}",
+                    "id",
+                    context?.packageName ?: "com.example.tetris"
+                )
+            )
             if (tv != null) {
                 textViewSet.add(tv)
             }
         }
 
-        for (i in textViewSet) {
-            i.setBackgroundColor(Random.nextInt("#000000".toColorInt(),"#FFFFFF".toColorInt()))
+        var current = 1
+        for (i in 1 until 11) {
+            for (j in 1 until 8) {
+                board[i][j] = view?.findViewById(
+                    resources.getIdentifier(
+                        "T${current}",
+                        "id",
+                        context?.packageName ?: "com.example.tetris"
+                    )
+                )
+                current++
+            }
         }
 
-        println("asdfasdfasdfsadfsadfa dsafsadfsadsafd ${textViewSet.size}")
+        for (i in board[1]) {
+            i?.setBackgroundColor(Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt()))
+        }
 
-        var board = Board(7,10).board
 
     }
 
