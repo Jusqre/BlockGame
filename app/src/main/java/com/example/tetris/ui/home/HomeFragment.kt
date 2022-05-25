@@ -1,6 +1,5 @@
 package com.example.tetris.ui.home
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,7 +20,7 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     var textViewSet = mutableListOf<TextView>()
-    var board = Board(11, 8).board
+    var board = Board(10, 7).board
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,7 +45,7 @@ class HomeFragment : Fragment() {
 
 
         for (i in 1..70) {
-            var tv = view?.findViewById<TextView>(
+            val tv = view?.findViewById<TextView>(
                 resources.getIdentifier(
                     "T${i}",
                     "id",
@@ -59,8 +58,8 @@ class HomeFragment : Fragment() {
         }
 
         var current = 1
-        for (i in 1 until 11) {
-            for (j in 1 until 8) {
+        for (i in 0 until 10) {
+            for (j in 0 until 7) {
                 board[i][j] = view?.findViewById(
                     resources.getIdentifier(
                         "T${current}",
@@ -72,7 +71,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        for (i in board[1]) {
+        for (i in board[0]) {
             i?.setBackgroundColor(Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt()))
         }
 
