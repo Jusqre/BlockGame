@@ -23,4 +23,8 @@ class Board(row: Int, private val column: Int) {
             }
         }
     }
+
+    fun sliding() {
+
+    }
 }

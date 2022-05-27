@@ -10,10 +10,11 @@ import java.lang.Exception
  * 0 -> 사각형
  * 1 -> 가로 1자형
  * 2 -> 세로 1자형
- *
+ * 3 -> ㄴ자 형
+ * 4 -> ㄹ자 형
  */
 
-data class Block(val shape: Int, var x: Int, var y: Int, val color: Int) {
+data class Block(var shape: Int, var x: Int, var y: Int, val color: Int) {
     private var prevIdx: MutableList<IntArray>
     private var idx: MutableList<IntArray>
 
@@ -35,6 +36,25 @@ data class Block(val shape: Int, var x: Int, var y: Int, val color: Int) {
             y += 1
             setBlockIndex()
             drawOnBoard(board)
+        }
+    }
+
+    fun rotate(board: Array<Array<TextView?>>) {
+        when (shape) {
+            1 -> {
+                shape = 2
+                x -= 1
+                y += 1
+                setBlockIndex()
+                drawOnBoard(board)
+            }
+            2 -> {
+                shape = 1
+                x += 1
+                y -= 1
+                setBlockIndex()
+                drawOnBoard(board)
+            }
         }
     }
 
@@ -62,6 +82,18 @@ data class Block(val shape: Int, var x: Int, var y: Int, val color: Int) {
                 tempList.add(intArrayOf(x + 2, y))
                 tempList.add(intArrayOf(x + 3, y))
             }
+            3 -> {
+                tempList.add(intArrayOf(x, y))
+                tempList.add(intArrayOf(x + 1, y))
+                tempList.add(intArrayOf(x + 1, y + 1))
+                tempList.add(intArrayOf(x + 1, y + 2))
+            }
+            4 -> {
+                tempList.add(intArrayOf(x, y))
+                tempList.add(intArrayOf(x, y + 1))
+                tempList.add(intArrayOf(x + 1, y + 1))
+                tempList.add(intArrayOf(x + 1, y + 2))
+            }
         }
         this.idx = tempList
         return tempList
@@ -77,23 +109,33 @@ data class Block(val shape: Int, var x: Int, var y: Int, val color: Int) {
 
     }
 
+    fun isRotatable(board: Array<Array<TextView?>>): Boolean {
+        when (shape) {
+        }
+
+
+        return true
+    }
+
     fun isMovable(board: Array<Array<TextView?>>, xx: Int, yy: Int): Boolean {
         var answer = true
         when (shape) {
-            0 -> answer = x + xx <= 10 && y+yy>=0 && y+yy<=6
-            1 -> answer = x + xx <= 11 && y+yy>=0 && y+yy<=7
-            2 -> answer = x + xx <= 8 && y+yy>=0 && y+yy<=7
+            0 -> answer = (x + 1) + xx <= 11 && y + yy >= 0 && (y + 1) + yy <= 7
+            1 -> answer = x + xx <= 11 && y + yy >= 0 && (y + 3) + yy <= 7
+            2 -> answer = (x + 3) + xx <= 11 && y + yy >= 0 && y + yy <= 7
+            3 -> answer = (x + 1) + xx <= 11 && y + yy >= 0 && (y + 2) + yy <= 7
+            4 -> answer = (x + 1) + xx <= 11 && y + yy >= 0 && (y + 2) + yy <= 7
         }
 
 
         for (list in idx) {
             try {
-                if ((board[list[0]+xx][list[1]+yy]?.background as ColorDrawable).color != "#FFFFFF".toColorInt()
-                    && (board[list[0]+xx][list[1]+yy]?.background as ColorDrawable).color != color
+                if ((board[list[0] + xx][list[1] + yy]?.background as ColorDrawable).color != "#FFFFFF".toColorInt()
+                    && (board[list[0] + xx][list[1] + yy]?.background as ColorDrawable).color != color
                 ) {
                     return false
                 }
-            } catch(e: Exception) {
+            } catch (e: Exception) {
                 continue
             }
         }

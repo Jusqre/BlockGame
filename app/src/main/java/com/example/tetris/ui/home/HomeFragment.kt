@@ -22,7 +22,7 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     var board = Board(11, 8)
-    var block = Block(Random.nextInt(0,3), 0, 0, Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt()))
+    var block = Block(Random.nextInt(0,5), 0, 0, Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt()))
     private lateinit var leftButton: Button
     private lateinit var middleButton: Button
     private lateinit var rightButton: Button
@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
 
         middleButton = binding.button2
         middleButton.setOnClickListener {
-
+            block.rotate(board.board)
         }
 
         leftButton = binding.button
@@ -77,7 +77,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        object : CountDownTimer(1000 * 50, 1000) {
+        object : CountDownTimer(1000 * 120, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 block.x += 1
                 if (block.isMovable(board.board,1,0)) {
@@ -85,7 +85,7 @@ class HomeFragment : Fragment() {
                     block.drawOnBoard(board.board)
                 } else {
                     board.clearing()
-                    block = Block(Random.nextInt(0,3), 0, 0, Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt()))
+                    block = Block(Random.nextInt(0,5), 0, 0, Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt()))
                     block.setBlockIndex()
                     block.drawOnBoard(board.board)
                 }
