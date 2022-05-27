@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.core.graphics.toColorInt
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.tetris.databinding.FragmentHomeBinding
+import com.example.tetris.resource.Block
 import com.example.tetris.resource.Board
 import kotlin.random.Random
 
@@ -21,6 +23,10 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     var textViewSet = mutableListOf<TextView>()
     var board = Board(10, 7).board
+    var block = Block(0, 0, 0, "#000000".toColorInt())
+    lateinit var leftButton : Button
+    lateinit var middleButton: Button
+    lateinit var rightButton : Button
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,6 +39,18 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        leftButton = binding.button
+        leftButton.setOnClickListener { block.setBlockIndex() }
+
+        middleButton = binding.button2
+        middleButton.setOnClickListener {
+            for (i in block.idx) {
+                board[i[0]][i[1]]?.setBackgroundColor(block.color)
+            }
+        }
+
+        rightButton = binding.button3
+        rightButton.setOnClickListener { block.moveBlock() }
         homeViewModel.text.observe(viewLifecycleOwner) {
 
         }
@@ -41,7 +59,6 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-
 
 
         for (i in 1..70) {

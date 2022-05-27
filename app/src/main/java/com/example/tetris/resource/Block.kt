@@ -1,15 +1,18 @@
 package com.example.tetris.resource
 
-import androidx.annotation.ColorInt
-
-data class Block(val shape: Int, val x: Int, val y: Int, val color: ColorInt) {
-    private var idx: MutableList<IntArray>
+data class Block(val shape: Int, var x: Int, var y: Int, val color: Int) {
+    var idx: MutableList<IntArray>
 
     init {
         this.idx = setBlockIndex()
     }
 
-    private fun setBlockIndex(): MutableList<IntArray> {
+    fun moveBlock() {
+        x += 1
+        y += 1
+    }
+
+    fun setBlockIndex(): MutableList<IntArray> {
         val tempList = mutableListOf<IntArray>()
 
         when (shape) {
@@ -32,6 +35,7 @@ data class Block(val shape: Int, val x: Int, val y: Int, val color: ColorInt) {
                 tempList.add(intArrayOf(x + 3, y))
             }
         }
+        this.idx = tempList
         return tempList
     }
 
