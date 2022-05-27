@@ -80,9 +80,9 @@ data class Block(val shape: Int, var x: Int, var y: Int, val color: Int) {
     fun isMovable(board: Array<Array<TextView?>>, xx: Int, yy: Int): Boolean {
         var answer = true
         when (shape) {
-            0 -> answer = x + xx <= 9 && y+yy>=0 && y+yy<=5
-            1 -> answer = x + xx <= 10 && y+yy>=0 && y+yy<=6
-            2 -> answer = x + xx <= 7 && y+yy>=0 && y+yy<=6
+            0 -> answer = x + xx <= 10 && y+yy>=0 && y+yy<=6
+            1 -> answer = x + xx <= 11 && y+yy>=0 && y+yy<=7
+            2 -> answer = x + xx <= 8 && y+yy>=0 && y+yy<=7
         }
 
 

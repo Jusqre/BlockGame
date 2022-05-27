@@ -21,7 +21,7 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    var board = Board(10, 7)
+    var board = Board(11, 8)
     var block = Block(Random.nextInt(0,3), 0, 0, Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt()))
     private lateinit var leftButton: Button
     private lateinit var middleButton: Button
@@ -64,8 +64,8 @@ class HomeFragment : Fragment() {
         super.onResume()
 
         var current = 1
-        for (i in 0 until 10) {
-            for (j in 0 until 7) {
+        for (i in 0 until 11) {
+            for (j in 0 until 8) {
                 board.board[i][j] = view?.findViewById(
                     resources.getIdentifier(
                         "T${current}",
