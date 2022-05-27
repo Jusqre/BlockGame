@@ -1,6 +1,7 @@
 package com.example.tetris.ui.home
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.tetris.databinding.FragmentHomeBinding
 import com.example.tetris.resource.Block
 import com.example.tetris.resource.Board
+import java.util.*
 import kotlin.random.Random
 
 class HomeFragment : Fragment() {
@@ -21,7 +23,6 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    var textViewSet = mutableListOf<TextView>()
     var board = Board(10, 7).board
     var block = Block(0, 0, 0, "#000000".toColorInt())
     lateinit var leftButton : Button
@@ -39,9 +40,6 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        leftButton = binding.button
-        leftButton.setOnClickListener { block.setBlockIndex() }
-
         middleButton = binding.button2
         middleButton.setOnClickListener {
             for (i in block.idx) {
@@ -49,8 +47,18 @@ class HomeFragment : Fragment() {
             }
         }
 
+        leftButton = binding.button
+        leftButton.setOnClickListener {
+            block.moveLeft()
+            block.drawOnBoard(board)
+        }
+
         rightButton = binding.button3
-        rightButton.setOnClickListener { block.moveBlock() }
+        rightButton.setOnClickListener {
+            block.moveRight()
+            block.drawOnBoard(board)
+        }
+
         homeViewModel.text.observe(viewLifecycleOwner) {
 
         }
@@ -59,20 +67,6 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-
-
-        for (i in 1..70) {
-            val tv = view?.findViewById<TextView>(
-                resources.getIdentifier(
-                    "T${i}",
-                    "id",
-                    context?.packageName ?: "com.example.tetris"
-                )
-            )
-            if (tv != null) {
-                textViewSet.add(tv)
-            }
-        }
 
         var current = 1
         for (i in 0 until 10) {
@@ -88,11 +82,16 @@ class HomeFragment : Fragment() {
             }
         }
 
-        for (i in board[0]) {
-            i?.setBackgroundColor(Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt()))
-        }
+        object : CountDownTimer(1000*24, 3000) {
+            override fun onTick(millisUntilFinished: Long) {
+                block.x += 1
+                block.setBlockIndex()
+                block.drawOnBoard(board)
+            }
 
-
+            override fun onFinish() {
+            }
+        }.start()
     }
 
     override fun onDestroyView() {
