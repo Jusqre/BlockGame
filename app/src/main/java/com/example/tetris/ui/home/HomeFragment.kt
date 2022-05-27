@@ -6,14 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import androidx.core.graphics.toColorInt
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.tetris.databinding.FragmentHomeBinding
 import com.example.tetris.resource.Block
 import com.example.tetris.resource.Board
-import java.util.*
 import kotlin.random.Random
 
 class HomeFragment : Fragment() {
@@ -24,10 +22,10 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     var board = Board(10, 7).board
-    var block = Block(0, 0, 0, "#000000".toColorInt())
-    lateinit var leftButton : Button
-    lateinit var middleButton: Button
-    lateinit var rightButton : Button
+    var block = Block(0, 0, 0, Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt()))
+    private lateinit var leftButton: Button
+    private lateinit var middleButton: Button
+    private lateinit var rightButton: Button
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,28 +33,32 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+            ViewModelProvider(this)[HomeViewModel::class.java]
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         middleButton = binding.button2
         middleButton.setOnClickListener {
-            for (i in block.idx) {
-                board[i[0]][i[1]]?.setBackgroundColor(block.color)
-            }
+
         }
 
         leftButton = binding.button
         leftButton.setOnClickListener {
             block.moveLeft()
-            block.drawOnBoard(board)
+            if (block.isMovable(board,0,-1)) {
+                block.setBlockIndex()
+                block.drawOnBoard(board)
+            }
         }
 
         rightButton = binding.button3
         rightButton.setOnClickListener {
             block.moveRight()
-            block.drawOnBoard(board)
+            if (block.isMovable(board,0,1)) {
+                block.setBlockIndex()
+                block.drawOnBoard(board)
+            }
         }
 
         homeViewModel.text.observe(viewLifecycleOwner) {
@@ -82,14 +84,20 @@ class HomeFragment : Fragment() {
             }
         }
 
-        object : CountDownTimer(1000*24, 3000) {
+        object : CountDownTimer(1000 * 50, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 block.x += 1
-                block.setBlockIndex()
-                block.drawOnBoard(board)
+                if (block.isMovable(board,1,0)) {
+                    block.setBlockIndex()
+                    block.drawOnBoard(board)
+                } else {
+                    block = Block(0, 0, 0, Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt()))
+                }
+
             }
 
             override fun onFinish() {
+                cancel()
             }
         }.start()
     }

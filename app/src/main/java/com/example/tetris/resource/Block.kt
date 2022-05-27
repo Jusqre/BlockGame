@@ -1,11 +1,21 @@
 package com.example.tetris.resource
 
+import android.graphics.drawable.ColorDrawable
 import android.widget.TextView
 import androidx.core.graphics.toColorInt
+import java.lang.Exception
+
+/**
+ * shape
+ * 0 -> 사각형
+ * 1 -> 가로 1자형
+ * 2 -> 세로 1자형
+ *
+ */
 
 data class Block(val shape: Int, var x: Int, var y: Int, val color: Int) {
-    var prevIdx: MutableList<IntArray>
-    var idx: MutableList<IntArray>
+    private var prevIdx: MutableList<IntArray>
+    private var idx: MutableList<IntArray>
 
     init {
         this.prevIdx = setBlockIndex()
@@ -13,12 +23,17 @@ data class Block(val shape: Int, var x: Int, var y: Int, val color: Int) {
     }
 
     fun moveLeft() {
+        if ((shape == 0 && y == 0)) {
+            return
+        }
         y -= 1
-        setBlockIndex()
     }
+
     fun moveRight() {
+        if (shape == 0 && y == 5) {
+            return
+        }
         y += 1
-        setBlockIndex()
     }
 
     fun setBlockIndex(): MutableList<IntArray> {
@@ -60,11 +75,28 @@ data class Block(val shape: Int, var x: Int, var y: Int, val color: Int) {
 
     }
 
-    fun checkStatus(block: Block): Boolean {
+    fun isMovable(board: Array<Array<TextView?>>, xx: Int, yy: Int): Boolean {
+        var answer = true
+        when (shape) {
+            0 -> answer = x + xx <= 9
+            1 -> answer = x + xx <= 10
+            2 -> answer = x + xx <= 7
+        }
 
 
-        return true
+        for (list in idx) {
+            try {
+                if ((board[list[0]+xx][list[1]+yy]?.background as ColorDrawable).color != "#FFFFFF".toColorInt()
+                    && (board[list[0]+xx][list[1]+yy]?.background as ColorDrawable).color != color
+                ) {
+                    return false
+                }
+            } catch(e: Exception) {
+                continue
+            }
+        }
 
+        return answer
     }
 
 }
