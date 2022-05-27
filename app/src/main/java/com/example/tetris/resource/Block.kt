@@ -22,18 +22,20 @@ data class Block(val shape: Int, var x: Int, var y: Int, val color: Int) {
         this.idx = setBlockIndex()
     }
 
-    fun moveLeft() {
-        if ((shape == 0 && y == 0)) {
-            return
+    fun moveLeft(board: Array<Array<TextView?>>) {
+        if (isMovable(board, 0, -1)) {
+            y -= 1
+            setBlockIndex()
+            drawOnBoard(board)
         }
-        y -= 1
     }
 
-    fun moveRight() {
-        if (shape == 0 && y == 5) {
-            return
+    fun moveRight(board: Array<Array<TextView?>>) {
+        if (isMovable(board, 0, 1)) {
+            y += 1
+            setBlockIndex()
+            drawOnBoard(board)
         }
-        y += 1
     }
 
     fun setBlockIndex(): MutableList<IntArray> {
@@ -78,9 +80,9 @@ data class Block(val shape: Int, var x: Int, var y: Int, val color: Int) {
     fun isMovable(board: Array<Array<TextView?>>, xx: Int, yy: Int): Boolean {
         var answer = true
         when (shape) {
-            0 -> answer = x + xx <= 9
-            1 -> answer = x + xx <= 10
-            2 -> answer = x + xx <= 7
+            0 -> answer = x + xx <= 9 && y+yy>=0 && y+yy<=5
+            1 -> answer = x + xx <= 10 && y+yy>=0 && y+yy<=6
+            2 -> answer = x + xx <= 7 && y+yy>=0 && y+yy<=6
         }
 
 

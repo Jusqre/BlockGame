@@ -21,8 +21,8 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    var board = Board(10, 7).board
-    var block = Block(0, 0, 0, Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt()))
+    var board = Board(10, 7)
+    var block = Block(Random.nextInt(0,3), 0, 0, Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt()))
     private lateinit var leftButton: Button
     private lateinit var middleButton: Button
     private lateinit var rightButton: Button
@@ -45,20 +45,13 @@ class HomeFragment : Fragment() {
 
         leftButton = binding.button
         leftButton.setOnClickListener {
-            block.moveLeft()
-            if (block.isMovable(board,0,-1)) {
-                block.setBlockIndex()
-                block.drawOnBoard(board)
-            }
+            block.moveLeft(board.board)
+
         }
 
         rightButton = binding.button3
         rightButton.setOnClickListener {
-            block.moveRight()
-            if (block.isMovable(board,0,1)) {
-                block.setBlockIndex()
-                block.drawOnBoard(board)
-            }
+            block.moveRight(board.board)
         }
 
         homeViewModel.text.observe(viewLifecycleOwner) {
@@ -73,7 +66,7 @@ class HomeFragment : Fragment() {
         var current = 1
         for (i in 0 until 10) {
             for (j in 0 until 7) {
-                board[i][j] = view?.findViewById(
+                board.board[i][j] = view?.findViewById(
                     resources.getIdentifier(
                         "T${current}",
                         "id",
@@ -87,11 +80,14 @@ class HomeFragment : Fragment() {
         object : CountDownTimer(1000 * 50, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 block.x += 1
-                if (block.isMovable(board,1,0)) {
+                if (block.isMovable(board.board,1,0)) {
                     block.setBlockIndex()
-                    block.drawOnBoard(board)
+                    block.drawOnBoard(board.board)
                 } else {
-                    block = Block(0, 0, 0, Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt()))
+                    board.clearing()
+                    block = Block(Random.nextInt(0,3), 0, 0, Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt()))
+                    block.setBlockIndex()
+                    block.drawOnBoard(board.board)
                 }
 
             }
