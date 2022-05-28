@@ -259,24 +259,6 @@ data class Block(var shape: Double, var x: Int, var y: Int, val color: Int) {
     }
 
     fun isMovable(board: Array<Array<TextView?>>, xx: Int, yy: Int): Boolean {
-        var answer = true
-        when (shape) {
-            0.0 -> answer = (x + 1) + xx <= 11 && y + yy >= 0 && (y + 1) + yy <= 7
-            1.0 -> answer = x + xx <= 11 && y + yy >= 0 && (y + 3) + yy <= 7
-            1.1 -> answer = (x + 3) + xx <= 11 && y + yy >= 0 && y + yy <= 7
-            2.0 -> answer = (x + 1) + xx <= 11 && y + yy >= 0 && (y + 2) + yy <= 7
-            2.1 -> answer = (x + 2) + xx <= 11 && y + yy >= 0 && (y + 1) + yy <= 7
-            2.2 -> answer = (x + 1) + xx <= 11 && y + yy >= 0 && (y + 2) + yy <= 7
-            2.3 -> answer = (x + 2) + xx <= 11 && y + yy >= 0 && (y + 1) + yy <= 7
-            3.0 -> answer = (x + 1) + xx <= 11 && y + yy >= 0 && (y + 2) + yy <= 7
-            3.1 -> answer = (x + 2) + xx <= 11 && y + yy >= 0 && (y + 1) + yy <= 7
-            4.0 -> answer = (x + 1) + xx <= 11 && y + yy >= 0 && (y + 2) + yy <= 7
-            4.1 -> answer = (x + 2) + xx <= 11 && y + yy >= 0 && (y + 1) + yy <= 7
-            4.2 -> answer = (x + 1) + xx <= 11 && y + yy >= 0 && (y + 2) + yy <= 7
-            4.3 -> answer = (x + 2) + xx <= 11 && y + yy >= 0 && (y + 1) + yy <= 7
-        }
-
-
         for (list in idx) {
             try {
                 if ((board[list[0] + xx][list[1] + yy]?.background as ColorDrawable).color != "#FFFFFF".toColorInt()
@@ -289,7 +271,7 @@ data class Block(var shape: Double, var x: Int, var y: Int, val color: Int) {
             }
         }
 
-        return answer
+        return true
     }
 
 }
