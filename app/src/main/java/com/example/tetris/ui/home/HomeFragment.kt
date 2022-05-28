@@ -89,6 +89,7 @@ class HomeFragment : Fragment() {
                     block.drawOnBoard(board.board)
                 } else {
                     board.clearing()
+                    board.sliding()
                     block = Block(Random.nextInt(0,5).toDouble(), 0, 0, Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt()))
                     block.setBlockIndex()
                     block.drawOnBoard(board.board)

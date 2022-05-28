@@ -25,6 +25,28 @@ class Board(row: Int, private val column: Int) {
     }
 
     fun sliding() {
+        for (i in board.indices.reversed()) {
+            var token = true
+            for (j in board[i]) {
+                if ((j?.background as ColorDrawable).color != "#FFFFFF".toColorInt()) {
+                    token = false
+                    break
+                }
+            }
+            if (token) {
+                if (i>=1) {
+                    for (j in board[i].indices) {
+                        board[i][j]?.setBackgroundColor((board[i-1][j]?.background as ColorDrawable).color)
+                        board[i-1][j]?.setBackgroundColor("#FFFFFF".toColorInt())
+                    }
+                } else {
+                    for (j in board[i].indices) {
+                        board[i][j]?.setBackgroundColor("#FFFFFF".toColorInt())
+                    }
+                }
+
+            }
+        }
 
     }
 }
