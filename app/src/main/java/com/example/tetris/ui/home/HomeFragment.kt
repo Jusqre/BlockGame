@@ -21,8 +21,9 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    var board = Board(11, 8)
-    var block = Block(Random.nextInt(0,5).toDouble(), 0, 0, Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt()))
+    private lateinit var tetrisGame : CountDownTimer
+    private lateinit var board : Board
+    private lateinit var block : Block
     private lateinit var leftButton: Button
     private lateinit var middleButton: Button
     private lateinit var rightButton: Button
@@ -37,6 +38,9 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        board = Board(11, 8)
+        block = Block(Random.nextInt(0,5).toDouble(), 0, 0, Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt()))
 
         middleButton = binding.button2
         middleButton.setOnClickListener {
@@ -77,7 +81,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        object : CountDownTimer(1000 * 120, 1000) {
+        tetrisGame = object : CountDownTimer(1000 * 120, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 block.x += 1
                 if (block.isMovable(board.board,1,0)) {
@@ -89,17 +93,20 @@ class HomeFragment : Fragment() {
                     block.setBlockIndex()
                     block.drawOnBoard(board.board)
                 }
-
             }
 
             override fun onFinish() {
                 cancel()
             }
-        }.start()
+        }
+
+        tetrisGame.start()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+
+        tetrisGame.onFinish()
     }
 }
