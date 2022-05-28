@@ -22,7 +22,7 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     var board = Board(11, 8)
-    var block = Block(Random.nextInt(0,5), 0, 0, Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt()))
+    var block = Block(Random.nextInt(0,5).toDouble(), 0, 0, Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt()))
     private lateinit var leftButton: Button
     private lateinit var middleButton: Button
     private lateinit var rightButton: Button
@@ -85,7 +85,7 @@ class HomeFragment : Fragment() {
                     block.drawOnBoard(board.board)
                 } else {
                     board.clearing()
-                    block = Block(Random.nextInt(0,5), 0, 0, Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt()))
+                    block = Block(Random.nextInt(0,5).toDouble(), 0, 0, Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt()))
                     block.setBlockIndex()
                     block.drawOnBoard(board.board)
                 }
