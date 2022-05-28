@@ -15,12 +15,11 @@ import java.lang.Exception
  */
 
 data class Block(var shape: Double, var x: Int, var y: Int, val color: Int) {
-    private var prevIdx: MutableList<IntArray>
+    private lateinit var prevIdx: MutableList<IntArray>
     private var idx: MutableList<IntArray>
 
     init {
-        this.prevIdx = setBlockIndex()
-        this.idx = setBlockIndex()
+        this.idx = getBlockInfo(shape)
     }
 
     fun moveLeft(board: Array<Array<TextView?>>) {
@@ -42,76 +41,104 @@ data class Block(var shape: Double, var x: Int, var y: Int, val color: Int) {
     fun rotate(board: Array<Array<TextView?>>) {
         when (shape) {
             1.0 -> {
-                shape = 1.1
                 x -= 1
                 y += 1
-                setBlockIndex()
-                drawOnBoard(board)
+                if (isRotatable(board, getBlockInfo(1.1))) {
+                    shape = 1.1
+                    setBlockIndex()
+                    drawOnBoard(board)
+                } else {
+                    x += 1
+                    y -= 1
+                }
             }
             1.1 -> {
-                shape = 1.0
                 x += 1
                 y -= 1
-                setBlockIndex()
-                drawOnBoard(board)
+                if (isRotatable(board, getBlockInfo(1.0))) {
+                    shape = 1.0
+                    setBlockIndex()
+                    drawOnBoard(board)
+                } else {
+                    x -= 1
+                    y += 1
+                }
             }
             2.0 -> {
-                shape = 2.1
-                setBlockIndex()
-                drawOnBoard(board)
+                if (isRotatable(board, getBlockInfo(2.1))) {
+                    shape = 2.1
+                    setBlockIndex()
+                    drawOnBoard(board)
+                }
             }
             2.1 -> {
-                shape = 2.2
-                setBlockIndex()
-                drawOnBoard(board)
+                if (isRotatable(board, getBlockInfo(2.2))) {
+                    shape = 2.2
+                    setBlockIndex()
+                    drawOnBoard(board)
+                }
             }
             2.2 -> {
-                shape = 2.3
-                setBlockIndex()
-                drawOnBoard(board)
+                if (isRotatable(board, getBlockInfo(2.3))) {
+                    shape = 2.3
+                    setBlockIndex()
+                    drawOnBoard(board)
+                }
             }
             2.3 -> {
-                shape = 2.0
-                setBlockIndex()
-                drawOnBoard(board)
+                if (isRotatable(board, getBlockInfo(2.0))) {
+                    shape = 2.0
+                    setBlockIndex()
+                    drawOnBoard(board)
+                }
             }
             3.0 -> {
-                shape = 3.1
-                setBlockIndex()
-                drawOnBoard(board)
+                if (isRotatable(board, getBlockInfo(3.1))) {
+                    shape = 3.1
+                    setBlockIndex()
+                    drawOnBoard(board)
+                }
             }
             3.1 -> {
-                shape = 3.0
-                setBlockIndex()
-                drawOnBoard(board)
+                if (isRotatable(board, getBlockInfo(3.0))) {
+                    shape = 3.0
+                    setBlockIndex()
+                    drawOnBoard(board)
+                }
             }
             4.0 -> {
-                shape = 4.1
-                setBlockIndex()
-                drawOnBoard(board)
+                if (isRotatable(board, getBlockInfo(4.1))) {
+                    shape = 4.1
+                    setBlockIndex()
+                    drawOnBoard(board)
+                }
             }
             4.1 -> {
-                shape = 4.2
-                setBlockIndex()
-                drawOnBoard(board)
+                if (isRotatable(board, getBlockInfo(4.2))) {
+                    shape = 4.2
+                    setBlockIndex()
+                    drawOnBoard(board)
+                }
             }
             4.2 -> {
-                shape = 4.3
-                setBlockIndex()
-                drawOnBoard(board)
+                if (isRotatable(board, getBlockInfo(4.3))) {
+                    shape = 4.3
+                    setBlockIndex()
+                    drawOnBoard(board)
+                }
             }
             4.3 -> {
-                shape = 4.0
-                setBlockIndex()
-                drawOnBoard(board)
+                if (isRotatable(board, getBlockInfo(4.0))) {
+                    shape = 4.0
+                    setBlockIndex()
+                    drawOnBoard(board)
+                }
             }
         }
     }
 
-    fun setBlockIndex(): MutableList<IntArray> {
+    private fun getBlockInfo(shape: Double): MutableList<IntArray> {
         val tempList = mutableListOf<IntArray>()
-
-        prevIdx = this.idx
 
         when (shape) {
             0.0 -> {
@@ -193,8 +220,14 @@ data class Block(var shape: Double, var x: Int, var y: Int, val color: Int) {
                 tempList.add(intArrayOf(x + 1, y))
             }
         }
-        this.idx = tempList
         return tempList
+    }
+
+    fun setBlockIndex() {
+        val tempList = getBlockInfo(shape)
+
+        this.prevIdx = this.idx
+        this.idx = tempList
     }
 
     fun drawOnBoard(board: Array<Array<TextView?>>) {
@@ -205,6 +238,24 @@ data class Block(var shape: Double, var x: Int, var y: Int, val color: Int) {
             board[cur[0]][cur[1]]?.setBackgroundColor(color)
         }
 
+    }
+
+    private fun isRotatable(
+        board: Array<Array<TextView?>>,
+        tempList: MutableList<IntArray>
+    ): Boolean {
+        for (list in tempList) {
+            try {
+                if ((board[list[0]][list[1]]?.background as ColorDrawable).color != "#FFFFFF".toColorInt()
+                    && (board[list[0]][list[1]]?.background as ColorDrawable).color != color
+                ) {
+                    return false
+                }
+            } catch (e: Exception) {
+                return false
+            }
+        }
+        return true
     }
 
     fun isMovable(board: Array<Array<TextView?>>, xx: Int, yy: Int): Boolean {
@@ -234,7 +285,7 @@ data class Block(var shape: Double, var x: Int, var y: Int, val color: Int) {
                     return false
                 }
             } catch (e: Exception) {
-                continue
+                return false
             }
         }
 
