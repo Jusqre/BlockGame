@@ -25,6 +25,7 @@ class HomeFragment : Fragment() {
     private lateinit var board : Board
     private lateinit var block : Block
     private lateinit var leftButton: Button
+    private lateinit var downButton: Button
     private lateinit var middleButton: Button
     private lateinit var rightButton: Button
 
@@ -41,6 +42,11 @@ class HomeFragment : Fragment() {
 
         board = Board(11, 8)
         block = Block(Random.nextInt(0,5).toDouble(), 0, 0, Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt()))
+
+        downButton = binding.button0
+        downButton.setOnClickListener {
+            block.moveBelow(board.board)
+        }
 
         middleButton = binding.button2
         middleButton.setOnClickListener {

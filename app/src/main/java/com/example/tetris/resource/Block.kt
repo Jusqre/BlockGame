@@ -22,6 +22,14 @@ data class Block(var shape: Double, var x: Int, var y: Int, val color: Int) {
         this.idx = getBlockInfo(shape)
     }
 
+    fun moveBelow(board: Array<Array<TextView?>>) {
+        if (isMovable(board, 1, 0)) {
+            x += 1
+            setBlockIndex()
+            drawOnBoard(board)
+        }
+    }
+
     fun moveLeft(board: Array<Array<TextView?>>) {
         if (isMovable(board, 0, -1)) {
             y -= 1
