@@ -20,7 +20,7 @@ class Board(row: Int, private val column: Int) {
                 }
             }
             if (token) {
-                score+= 10
+                score += 10
                 for (k in i downTo 0) {
                     if (k >= 1) {
                         for (j in board[k].indices) {
