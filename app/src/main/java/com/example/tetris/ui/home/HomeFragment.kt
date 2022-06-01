@@ -6,13 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.core.graphics.toColorInt
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.tetris.databinding.FragmentHomeBinding
-import com.example.tetris.resource.Block
 import com.example.tetris.resource.Board
-import kotlin.random.Random
 
 class HomeFragment : Fragment() {
 
@@ -21,51 +18,48 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private lateinit var tetrisGame : CountDownTimer
-    private lateinit var board : Board
-    private lateinit var block : Block
+    private lateinit var tetrisGame: CountDownTimer
+    private lateinit var board: Board
     private lateinit var leftButton: Button
     private lateinit var downButton: Button
     private lateinit var middleButton: Button
     private lateinit var rightButton: Button
+    lateinit var homeViewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
+        homeViewModel =
             ViewModelProvider(this)[HomeViewModel::class.java]
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         board = Board(11, 8)
-        block = Block(Random.nextInt(0,5).toDouble(), 0, 0, Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt()))
-
         downButton = binding.button0
         downButton.setOnClickListener {
-            block.moveBelow(board.board)
+            homeViewModel.moveBelow(board)
         }
 
         middleButton = binding.button2
         middleButton.setOnClickListener {
-            block.rotate(board.board)
+            homeViewModel.rotate(board)
         }
 
         leftButton = binding.button
         leftButton.setOnClickListener {
-            block.moveLeft(board.board)
+            homeViewModel.moveLeft(board)
 
         }
 
         rightButton = binding.button3
         rightButton.setOnClickListener {
-            block.moveRight(board.board)
+            homeViewModel.moveRight(board)
         }
 
-        homeViewModel.text.observe(viewLifecycleOwner) {
-
+        homeViewModel.block.observe(viewLifecycleOwner) {
+            homeViewModel.drawOnBoard(board)
         }
         return root
     }
@@ -86,20 +80,9 @@ class HomeFragment : Fragment() {
                 current++
             }
         }
-
-        tetrisGame = object : CountDownTimer(1000 * 120, 1000) {
+        tetrisGame = object : CountDownTimer(1000 * 600, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                block.x += 1
-                if (block.isMovable(board.board,1,0)) {
-                    block.setBlockIndex()
-                    block.drawOnBoard(board.board)
-                } else {
-                    board.clearing()
-                    board.sliding()
-                    block = Block(Random.nextInt(0,5).toDouble(), 0, 0, Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt()))
-                    block.setBlockIndex()
-                    block.drawOnBoard(board.board)
-                }
+                homeViewModel.goWithTime(board)
             }
 
             override fun onFinish() {
@@ -108,6 +91,7 @@ class HomeFragment : Fragment() {
         }
 
         tetrisGame.start()
+
     }
 
     override fun onDestroyView() {

@@ -15,18 +15,18 @@ import java.lang.Exception
  */
 
 data class Block(var shape: Double, var x: Int, var y: Int, val color: Int) {
-    private lateinit var prevIdx: MutableList<IntArray>
-    private var idx: MutableList<IntArray>
+    private var previousIndex: MutableList<IntArray>
+    private var blockIndex: MutableList<IntArray>
 
     init {
-        this.idx = getBlockInfo(shape)
+        this.blockIndex = getBlockInfo(shape)
+        this.previousIndex = this.blockIndex
     }
 
     fun moveBelow(board: Array<Array<TextView?>>) {
         if (isMovable(board, 1, 0)) {
             x += 1
             setBlockIndex()
-            drawOnBoard(board)
         }
     }
 
@@ -34,7 +34,6 @@ data class Block(var shape: Double, var x: Int, var y: Int, val color: Int) {
         if (isMovable(board, 0, -1)) {
             y -= 1
             setBlockIndex()
-            drawOnBoard(board)
         }
     }
 
@@ -42,7 +41,6 @@ data class Block(var shape: Double, var x: Int, var y: Int, val color: Int) {
         if (isMovable(board, 0, 1)) {
             y += 1
             setBlockIndex()
-            drawOnBoard(board)
         }
     }
 
@@ -177,7 +175,7 @@ data class Block(var shape: Double, var x: Int, var y: Int, val color: Int) {
                 tempList.add(intArrayOf(x, y))
                 tempList.add(intArrayOf(x, y + 1))
                 tempList.add(intArrayOf(x + 1, y))
-                tempList.add(intArrayOf(x+2, y))
+                tempList.add(intArrayOf(x + 2, y))
             }
             2.2 -> {
                 tempList.add(intArrayOf(x, y))
@@ -234,18 +232,17 @@ data class Block(var shape: Double, var x: Int, var y: Int, val color: Int) {
     fun setBlockIndex() {
         val tempList = getBlockInfo(shape)
 
-        this.prevIdx = this.idx
-        this.idx = tempList
+        this.previousIndex = this.blockIndex
+        this.blockIndex = tempList
     }
 
     fun drawOnBoard(board: Array<Array<TextView?>>) {
-        for (prev in prevIdx) {
+        for (prev in previousIndex) {
             board[prev[0]][prev[1]]?.setBackgroundColor("#FFFFFF".toColorInt())
         }
-        for (cur in idx) {
+        for (cur in blockIndex) {
             board[cur[0]][cur[1]]?.setBackgroundColor(color)
         }
-
     }
 
     private fun isRotatable(
@@ -267,7 +264,7 @@ data class Block(var shape: Double, var x: Int, var y: Int, val color: Int) {
     }
 
     fun isMovable(board: Array<Array<TextView?>>, xx: Int, yy: Int): Boolean {
-        for (list in idx) {
+        for (list in blockIndex) {
             try {
                 if ((board[list[0] + xx][list[1] + yy]?.background as ColorDrawable).color != "#FFFFFF".toColorInt()
                     && (board[list[0] + xx][list[1] + yy]?.background as ColorDrawable).color != color

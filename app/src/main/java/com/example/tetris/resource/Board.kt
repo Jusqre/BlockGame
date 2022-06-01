@@ -8,7 +8,9 @@ class Board(row: Int, private val column: Int) {
     var board: Array<Array<TextView?>> = Array(row) { Array(column) { null } }
 
     fun clearing() {
-        for (i in board.indices) {
+        var i = board.size - 1
+
+        while (i > 0) {
             var token = true
             for (j in board[i]) {
                 if ((j?.background as ColorDrawable).color == "#FFFFFF".toColorInt()) {
@@ -17,36 +19,21 @@ class Board(row: Int, private val column: Int) {
                 }
             }
             if (token) {
-                for (j in board[i]) {
-                    j?.setBackgroundColor("#FFFFFF".toColorInt())
-                }
-            }
-        }
-    }
-
-    fun sliding() {
-        for (i in board.indices.reversed()) {
-            var token = true
-            for (j in board[i]) {
-                if ((j?.background as ColorDrawable).color != "#FFFFFF".toColorInt()) {
-                    token = false
-                    break
-                }
-            }
-            if (token) {
-                if (i>=1) {
-                    for (j in board[i].indices) {
-                        board[i][j]?.setBackgroundColor((board[i-1][j]?.background as ColorDrawable).color)
-                        board[i-1][j]?.setBackgroundColor("#FFFFFF".toColorInt())
-                    }
-                } else {
-                    for (j in board[i].indices) {
-                        board[i][j]?.setBackgroundColor("#FFFFFF".toColorInt())
+                for (k in i downTo 0) {
+                    if (k >= 1) {
+                        for (j in board[k].indices) {
+                            board[k][j]?.setBackgroundColor((board[k - 1][j]?.background as ColorDrawable).color)
+                            board[k - 1][j]?.setBackgroundColor("#FFFFFF".toColorInt())
+                        }
+                    } else {
+                        for (j in board[k].indices) {
+                            board[k][j]?.setBackgroundColor("#FFFFFF".toColorInt())
+                        }
                     }
                 }
-
+            } else {
+                i--
             }
         }
-
     }
 }
