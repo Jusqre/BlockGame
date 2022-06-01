@@ -7,8 +7,9 @@ import androidx.core.graphics.toColorInt
 class Board(row: Int, private val column: Int) {
     var board: Array<Array<TextView?>> = Array(row) { Array(column) { null } }
 
-    fun clearing() {
+    fun getScoreWithClearing(): Int {
         var i = board.size - 1
+        var score = 0
 
         while (i > 0) {
             var token = true
@@ -19,6 +20,7 @@ class Board(row: Int, private val column: Int) {
                 }
             }
             if (token) {
+                score+= 10
                 for (k in i downTo 0) {
                     if (k >= 1) {
                         for (j in board[k].indices) {
@@ -35,5 +37,6 @@ class Board(row: Int, private val column: Int) {
                 i--
             }
         }
+        return score
     }
 }

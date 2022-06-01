@@ -12,6 +12,8 @@ import java.lang.Exception
  * 2 -> ㄴ자 형, 2.1 -> 90, 2.2 -> 180, 2.3 -> 270
  * 3 -> ㄹ자 형 3.1 -> 90
  * 4 -> ㅗ, 4.1 -> ㅏ, 4.2 -> ㅜ, 4.3 -> ㅓ
+ * 5 -> 역 ㄹ자형 5.1 -> 90
+ * 6 -> 역 ㄴ자형
  */
 
 data class Block(var shape: Double, var x: Int, var y: Int, val color: Int) {
@@ -140,6 +142,48 @@ data class Block(var shape: Double, var x: Int, var y: Int, val color: Int) {
                     drawOnBoard(board)
                 }
             }
+            5.0 -> {
+                if (isRotatable(board, getBlockInfo(5.1))) {
+                    shape = 5.1
+                    setBlockIndex()
+                    drawOnBoard(board)
+                }
+            }
+            5.1 -> {
+                if (isRotatable(board, getBlockInfo(5.0))) {
+                    shape = 5.0
+                    setBlockIndex()
+                    drawOnBoard(board)
+                }
+            }
+            6.0 -> {
+                if (isRotatable(board, getBlockInfo(6.1))) {
+                    shape = 6.1
+                    setBlockIndex()
+                    drawOnBoard(board)
+                }
+            }
+            6.1 -> {
+                if (isRotatable(board, getBlockInfo(6.2))) {
+                    shape = 6.2
+                    setBlockIndex()
+                    drawOnBoard(board)
+                }
+            }
+            6.2 -> {
+                if (isRotatable(board, getBlockInfo(6.3))) {
+                    shape = 6.3
+                    setBlockIndex()
+                    drawOnBoard(board)
+                }
+            }
+            6.3 -> {
+                if (isRotatable(board, getBlockInfo(6.0))) {
+                    shape = 6.0
+                    setBlockIndex()
+                    drawOnBoard(board)
+                }
+            }
         }
     }
 
@@ -224,6 +268,42 @@ data class Block(var shape: Double, var x: Int, var y: Int, val color: Int) {
                 tempList.add(intArrayOf(x + 1, y + 1))
                 tempList.add(intArrayOf(x + 2, y + 1))
                 tempList.add(intArrayOf(x + 1, y))
+            }
+            5.0 -> {
+                tempList.add(intArrayOf(x, y + 1))
+                tempList.add(intArrayOf(x, y + 2))
+                tempList.add(intArrayOf(x + 1, y))
+                tempList.add(intArrayOf(x + 1, y + 1))
+            }
+            5.1 -> {
+                tempList.add(intArrayOf(x, y))
+                tempList.add(intArrayOf(x + 1, y))
+                tempList.add(intArrayOf(x + 1, y + 1))
+                tempList.add(intArrayOf(x + 2, y + 1))
+            }
+            6.0 -> {
+                tempList.add(intArrayOf(x, y + 2))
+                tempList.add(intArrayOf(x + 1, y))
+                tempList.add(intArrayOf(x + 1, y + 1))
+                tempList.add(intArrayOf(x + 1, y + 2))
+            }
+            6.1 -> {
+                tempList.add(intArrayOf(x, y))
+                tempList.add(intArrayOf(x + 2, y + 1))
+                tempList.add(intArrayOf(x + 1, y))
+                tempList.add(intArrayOf(x + 2, y))
+            }
+            6.2 -> {
+                tempList.add(intArrayOf(x, y))
+                tempList.add(intArrayOf(x, y + 1))
+                tempList.add(intArrayOf(x, y + 2))
+                tempList.add(intArrayOf(x + 1, y))
+            }
+            6.3 -> {
+                tempList.add(intArrayOf(x, y))
+                tempList.add(intArrayOf(x + 1, y + 1))
+                tempList.add(intArrayOf(x + 2, y + 1))
+                tempList.add(intArrayOf(x, y + 1))
             }
         }
         return tempList

@@ -7,4 +7,6 @@
     <string name="rotate">rotate</string>
     <string name="right">right</string>
     <string name="down">down</string>
+    <string name="_000">000</string>
+    <string name="_0">0</string>
 </resources>

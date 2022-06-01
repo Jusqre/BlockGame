@@ -61,6 +61,10 @@ class HomeFragment : Fragment() {
         homeViewModel.block.observe(viewLifecycleOwner) {
             homeViewModel.drawOnBoard(board)
         }
+
+        homeViewModel.score.observe(viewLifecycleOwner) {
+            binding.scoreBoard.text = it.toString()
+        }
         return root
     }
 
