@@ -21,7 +21,7 @@ class HomeViewModel : ViewModel() {
     init {
         _block.postValue(
             Block(
-                Random.nextInt(0, 6).toDouble(),
+                Random.nextInt(0, 7).toDouble(),
                 0,
                 0,
                 Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt())
@@ -43,7 +43,7 @@ class HomeViewModel : ViewModel() {
             }
             _block.postValue(
                 Block(
-                    Random.nextInt(0, 6).toDouble(),
+                    Random.nextInt(0, 7).toDouble(),
                     0,
                     0,
                     Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt())
