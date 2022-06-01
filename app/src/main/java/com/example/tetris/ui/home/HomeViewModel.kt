@@ -14,6 +14,10 @@ class HomeViewModel : ViewModel() {
     val block: LiveData<Block>
         get() = _block
 
+    private val _score = MutableLiveData<Int>()
+    val score: LiveData<Int>
+        get() = _score
+
     init {
         _block.postValue(
             Block(
@@ -23,6 +27,7 @@ class HomeViewModel : ViewModel() {
                 Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt())
             )
         )
+        _score.postValue(0)
     }
 
     fun goWithTime(board: Board) {
@@ -33,7 +38,9 @@ class HomeViewModel : ViewModel() {
                 _block.postValue(this)
             }
         } else {
-            board.clearing()
+            _score.value?.apply {
+                _score.postValue(this + board.getScoreWithClearing())
+            }
             _block.postValue(
                 Block(
                     Random.nextInt(0, 5).toDouble(),
