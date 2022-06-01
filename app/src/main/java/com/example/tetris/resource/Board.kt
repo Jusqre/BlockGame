@@ -17,9 +17,7 @@ class Board(row: Int, private val column: Int) {
                 }
             }
             if (token) {
-                for (j in board[i]) {
-                    j?.setBackgroundColor("#FFFFFF".toColorInt())
-                }
+                board[i].forEach { it?.setBackgroundColor("#FFFFFF".toColorInt()) }
             }
         }
     }
@@ -34,10 +32,10 @@ class Board(row: Int, private val column: Int) {
                 }
             }
             if (token) {
-                if (i>=1) {
+                if (i >= 1) {
                     for (j in board[i].indices) {
-                        board[i][j]?.setBackgroundColor((board[i-1][j]?.background as ColorDrawable).color)
-                        board[i-1][j]?.setBackgroundColor("#FFFFFF".toColorInt())
+                        board[i][j]?.setBackgroundColor((board[i - 1][j]?.background as ColorDrawable).color)
+                        board[i - 1][j]?.setBackgroundColor("#FFFFFF".toColorInt())
                     }
                 } else {
                     for (j in board[i].indices) {

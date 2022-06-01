@@ -80,8 +80,7 @@ class HomeFragment : Fragment() {
                 current++
             }
         }
-
-        tetrisGame = object : CountDownTimer(1000 * 120, 1000) {
+        tetrisGame = object : CountDownTimer(1000 * 600, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 homeViewModel.goWithTime(board)
             }
