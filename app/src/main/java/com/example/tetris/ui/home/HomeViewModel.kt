@@ -26,22 +26,22 @@ class HomeViewModel : ViewModel() {
     }
 
     fun goWithTime(board: Board) {
-        _block.value?.apply {
-            this.x += 1
-            if (this.isMovable(board.board, 1, 0)) {
+        if (_block.value?.isMovable(board.board, 1, 0) == true) {
+            _block.value?.apply {
+                this.x += 1
                 this.setBlockIndex()
-            } else {
-                board.clearing()
-                board.sliding()
-                _block.value = Block(
+                _block.postValue(this)
+            }
+        } else {
+            board.clearing()
+            _block.postValue(
+                Block(
                     Random.nextInt(0, 5).toDouble(),
                     0,
                     0,
                     Random.nextInt("#000000".toColorInt(), "#FFFFFF".toColorInt())
                 )
-                this.setBlockIndex()
-            }
-            _block.postValue(this)
+            )
         }
     }
 
