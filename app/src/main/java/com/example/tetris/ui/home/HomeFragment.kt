@@ -20,6 +20,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var tetrisGame: CountDownTimer
     private lateinit var board: Board
+    private lateinit var startButton: Button
     private lateinit var leftButton: Button
     private lateinit var downButton: Button
     private lateinit var middleButton: Button
@@ -37,6 +38,14 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
 
         board = Board(11, 8)
+
+        startButton = binding.button00
+        startButton.setOnClickListener {
+            tetrisGame.onFinish()
+            board.initialize()
+            tetrisGame.start()
+        }
+
         downButton = binding.button0
         downButton.setOnClickListener {
             homeViewModel.moveBelow(board)
@@ -71,19 +80,9 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        var current = 1
-        for (i in 0 until 11) {
-            for (j in 0 until 8) {
-                board.board[i][j] = view?.findViewById(
-                    resources.getIdentifier(
-                        "T${current}",
-                        "id",
-                        context?.packageName ?: "com.example.tetris"
-                    )
-                )
-                current++
-            }
-        }
+        board.adapt(view,context,resources)
+        board.initialize()
+
         tetrisGame = object : CountDownTimer(1000 * 600, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 homeViewModel.goWithTime(board)

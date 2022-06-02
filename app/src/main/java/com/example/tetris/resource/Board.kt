@@ -1,11 +1,45 @@
 package com.example.tetris.resource
 
+import android.content.Context
+import android.content.res.Resources
 import android.graphics.drawable.ColorDrawable
+import android.view.View
 import android.widget.TextView
 import androidx.core.graphics.toColorInt
 
 class Board(row: Int, private val column: Int) {
     var board: Array<Array<TextView?>> = Array(row) { Array(column) { null } }
+
+    private lateinit var mView : View
+    private lateinit var mContext : Context
+    private lateinit var mResource : Resources
+
+    fun adapt(view: View?, context: Context?, resources: Resources) {
+        if (view != null) {
+            mView = view
+        }
+        if (context != null) {
+            mContext = context
+        }
+        mResource = resources
+    }
+
+    fun initialize() {
+        var current = 1
+        for (i in 0 until 11) {
+            for (j in 0 until 8) {
+                board[i][j] = mView.findViewById(
+                    mResource.getIdentifier(
+                        "T${current}",
+                        "id",
+                        mContext.packageName ?: "com.example.tetris"
+                    )
+                )
+                board[i][j]?.setBackgroundColor("#FFFFFF".toColorInt())
+                current++
+            }
+        }
+    }
 
     fun getScoreWithClearing(): Int {
         var i = board.size - 1
