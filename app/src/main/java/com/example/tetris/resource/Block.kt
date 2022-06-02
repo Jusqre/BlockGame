@@ -54,7 +54,6 @@ data class Block(var shape: Double, var x: Int, var y: Int, val color: Int) {
                 if (isRotatable(board, getBlockInfo(1.1))) {
                     shape = 1.1
                     setBlockIndex()
-                    drawOnBoard(board)
                 } else {
                     x += 1
                     y -= 1
@@ -66,7 +65,6 @@ data class Block(var shape: Double, var x: Int, var y: Int, val color: Int) {
                 if (isRotatable(board, getBlockInfo(1.0))) {
                     shape = 1.0
                     setBlockIndex()
-                    drawOnBoard(board)
                 } else {
                     x -= 1
                     y += 1
@@ -76,112 +74,96 @@ data class Block(var shape: Double, var x: Int, var y: Int, val color: Int) {
                 if (isRotatable(board, getBlockInfo(2.1))) {
                     shape = 2.1
                     setBlockIndex()
-                    drawOnBoard(board)
                 }
             }
             2.1 -> {
                 if (isRotatable(board, getBlockInfo(2.2))) {
                     shape = 2.2
                     setBlockIndex()
-                    drawOnBoard(board)
                 }
             }
             2.2 -> {
                 if (isRotatable(board, getBlockInfo(2.3))) {
                     shape = 2.3
                     setBlockIndex()
-                    drawOnBoard(board)
                 }
             }
             2.3 -> {
                 if (isRotatable(board, getBlockInfo(2.0))) {
                     shape = 2.0
                     setBlockIndex()
-                    drawOnBoard(board)
                 }
             }
             3.0 -> {
                 if (isRotatable(board, getBlockInfo(3.1))) {
                     shape = 3.1
                     setBlockIndex()
-                    drawOnBoard(board)
                 }
             }
             3.1 -> {
                 if (isRotatable(board, getBlockInfo(3.0))) {
                     shape = 3.0
                     setBlockIndex()
-                    drawOnBoard(board)
                 }
             }
             4.0 -> {
                 if (isRotatable(board, getBlockInfo(4.1))) {
                     shape = 4.1
                     setBlockIndex()
-                    drawOnBoard(board)
                 }
             }
             4.1 -> {
                 if (isRotatable(board, getBlockInfo(4.2))) {
                     shape = 4.2
                     setBlockIndex()
-                    drawOnBoard(board)
                 }
             }
             4.2 -> {
                 if (isRotatable(board, getBlockInfo(4.3))) {
                     shape = 4.3
                     setBlockIndex()
-                    drawOnBoard(board)
                 }
             }
             4.3 -> {
                 if (isRotatable(board, getBlockInfo(4.0))) {
                     shape = 4.0
                     setBlockIndex()
-                    drawOnBoard(board)
                 }
             }
             5.0 -> {
                 if (isRotatable(board, getBlockInfo(5.1))) {
                     shape = 5.1
                     setBlockIndex()
-                    drawOnBoard(board)
                 }
             }
             5.1 -> {
                 if (isRotatable(board, getBlockInfo(5.0))) {
                     shape = 5.0
                     setBlockIndex()
-                    drawOnBoard(board)
                 }
             }
             6.0 -> {
                 if (isRotatable(board, getBlockInfo(6.1))) {
                     shape = 6.1
                     setBlockIndex()
-                    drawOnBoard(board)
                 }
             }
             6.1 -> {
                 if (isRotatable(board, getBlockInfo(6.2))) {
                     shape = 6.2
                     setBlockIndex()
-                    drawOnBoard(board)
                 }
             }
             6.2 -> {
                 if (isRotatable(board, getBlockInfo(6.3))) {
                     shape = 6.3
                     setBlockIndex()
-                    drawOnBoard(board)
                 }
             }
             6.3 -> {
                 if (isRotatable(board, getBlockInfo(6.0))) {
                     shape = 6.0
                     setBlockIndex()
-                    drawOnBoard(board)
                 }
             }
         }
