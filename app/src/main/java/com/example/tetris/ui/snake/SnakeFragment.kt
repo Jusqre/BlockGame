@@ -66,9 +66,13 @@ class SnakeFragment : Fragment() {
 
         board.adapt(view,context,resources)
         board.initialize()
+        var interval = 700L
 
-        snakeGame = object : CountDownTimer(1000 * 600, 1000) {
+        snakeGame = object : CountDownTimer(1000 * 600, interval) {
             override fun onTick(millisUntilFinished: Long) {
+                if (board.foodCount == 0) {
+                    interval *= 0.9.toLong()
+                }
                 board.makeSnakeFood()
                 snakeViewModel.goWithTime(board)
             }
