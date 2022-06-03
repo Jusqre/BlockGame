@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.tetris.databinding.FragmentSnakeBinding
 import com.example.tetris.resource.Board
-import com.example.tetris.ui.tetris.TetrisViewModel
 
 class SnakeFragment : Fragment() {
 
@@ -19,7 +18,7 @@ class SnakeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private lateinit var tetrisGame: CountDownTimer
+    private lateinit var snakeGame: CountDownTimer
     private lateinit var board: Board
     private lateinit var leftButton: Button
     private lateinit var middleButton: Button
@@ -31,7 +30,7 @@ class SnakeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val snakeViewModel =
+        snakeViewModel =
             ViewModelProvider(this)[SnakeViewModel::class.java]
 
         _binding = FragmentSnakeBinding.inflate(inflater, container, false)
@@ -39,11 +38,52 @@ class SnakeFragment : Fragment() {
 
         board = Board(11, 8)
 
+        middleButton = binding.button2
+        middleButton.setOnClickListener {
+
+        }
+
+        leftButton = binding.button
+        leftButton.setOnClickListener {
+            snakeViewModel.turnLeft()
+
+        }
+
+        rightButton = binding.button3
+        rightButton.setOnClickListener {
+            snakeViewModel.turnRight()
+        }
+
+        snakeViewModel.snake.observe(viewLifecycleOwner) {
+            snakeViewModel.drawOnBoard(board)
+        }
+
         return root
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        board.adapt(view,context,resources)
+        board.initialize()
+
+        snakeGame = object : CountDownTimer(1000 * 600, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                board.makeSnakeFood()
+                snakeViewModel.goWithTime(board)
+            }
+
+            override fun onFinish() {
+                cancel()
+            }
+        }
+
+        snakeGame.start()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        snakeGame.onFinish()
     }
 }

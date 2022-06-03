@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable
 import android.view.View
 import android.widget.TextView
 import androidx.core.graphics.toColorInt
+import kotlin.random.Random
 
 class Board(row: Int, private val column: Int) {
     var board: Array<Array<TextView?>> = Array(row) { Array(column) { null } }
@@ -13,6 +14,8 @@ class Board(row: Int, private val column: Int) {
     private lateinit var mView : View
     private lateinit var mContext : Context
     private lateinit var mResource : Resources
+
+    var foodCount = 0
 
     fun adapt(view: View?, context: Context?, resources: Resources) {
         if (view != null) {
@@ -38,6 +41,13 @@ class Board(row: Int, private val column: Int) {
                 board[i][j]?.setBackgroundColor("#FFFFFF".toColorInt())
                 current++
             }
+        }
+    }
+
+    fun makeSnakeFood() {
+        if (foodCount == 0) {
+            board[Random.nextInt(1,10)][Random.nextInt(1,7)]?.setBackgroundColor("#555555".toColorInt())
+            foodCount++
         }
     }
 
