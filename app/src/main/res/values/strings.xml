@@ -11,4 +11,7 @@
     <string name="_0">0</string>
     <string name="start_restart">Start/reStart</string>
     <string name="start">start</string>
+    <string name="tetris">tetris</string>
+    <string name="snake">snake</string>
+    <string name="pause">pause</string>
 </resources>
