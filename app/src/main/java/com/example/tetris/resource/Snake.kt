@@ -1,5 +1,6 @@
 package com.example.tetris.resource
 
+import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.widget.TextView
 import androidx.core.graphics.toColorInt
@@ -39,17 +40,17 @@ data class Snake(var x: Int, var y: Int, var direction: Int, var list: MutableLi
     }
 
     fun drawOnBoard(board: Array<Array<TextView?>>) {
-        board[lastIndex[0]][lastIndex[1]]?.setBackgroundColor("#FFFFFF".toColorInt())
-        board[list[0][0]][list[0][1]]?.setBackgroundColor("#000000".toColorInt())
+        board[lastIndex[0]][lastIndex[1]]?.setBackgroundColor(Color.WHITE)
+        board[list[0][0]][list[0][1]]?.setBackgroundColor(Color.GREEN)
     }
 
     private fun isSnakeEat(board: Board): Boolean {
-        return (board.board[x + dx[direction]][y + dy[direction]]?.background as ColorDrawable).color != "#FFFFFF".toColorInt()
+        return (board.board[x + dx[direction]][y + dy[direction]]?.background as ColorDrawable).color == Color.RED
     }
 
     fun isMovable(board: Array<Array<TextView?>>, xx: Int, yy: Int): Boolean {
         try {
-            if ((board[xx+dx[direction]][yy+dy[direction]]?.background as ColorDrawable).color == "#000000".toColorInt()
+            if ((board[xx+dx[direction]][yy+dy[direction]]?.background as ColorDrawable).color == Color.GREEN
             ) {
                 return false
             }

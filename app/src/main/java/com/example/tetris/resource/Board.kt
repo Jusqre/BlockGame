@@ -2,6 +2,7 @@ package com.example.tetris.resource
 
 import android.content.Context
 import android.content.res.Resources
+import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.View
 import android.widget.TextView
@@ -46,7 +47,7 @@ class Board(row: Int, private val column: Int) {
 
     fun makeSnakeFood() {
         if (foodCount == 0) {
-            board[Random.nextInt(1,10)][Random.nextInt(1,7)]?.setBackgroundColor("#555555".toColorInt())
+            board[Random.nextInt(1,10)][Random.nextInt(1,7)]?.setBackgroundColor(Color.RED)
             foodCount++
         }
     }
