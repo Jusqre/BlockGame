@@ -1,10 +1,14 @@
-# Tetris
+# BlockGame
+- ## Kotlin, 구현/시뮬레이션, MVVM 연습용
 
-- ### Kotlin, 구현/시뮬레이션, MVVM 연습용 테트리스
+## Tetris
 
-![테트리스](https://user-images.githubusercontent.com/76417969/171359345-7bd4521e-3260-455a-9c8d-c5f5af2a18f4.gif)
+   - ![테트리스](https://user-images.githubusercontent.com/76417969/171359345-7bd4521e-3260-455a-9c8d-c5f5af2a18f4.gif)
+
+## Snake Game
+
+   - ![뱀게임](https://user-images.githubusercontent.com/76417969/171829369-d1ffee00-50ae-4a5f-bfd9-20b87caeef34.gif)
 
 - ## TODO
-   - Reset 버튼 추가
-   - 순위 Fragment 추가
    - Layout 동적생성
+   - 게임 종료 구현
