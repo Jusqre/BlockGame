@@ -1,4 +1,4 @@
-package com.example.tetris.ui.home
+package com.example.tetris.ui.tetris
 
 import androidx.core.graphics.toColorInt
 import androidx.lifecycle.LiveData
@@ -8,7 +8,7 @@ import com.example.tetris.resource.Block
 import com.example.tetris.resource.Board
 import kotlin.random.Random
 
-class HomeViewModel : ViewModel() {
+class TetrisViewModel : ViewModel() {
 
     private val _block = MutableLiveData<Block>()
     val block: LiveData<Block>
