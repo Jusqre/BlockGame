@@ -2,8 +2,10 @@ package com.example.tetris.resource
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.widget.TextView
 import androidx.core.graphics.toColorInt
+import com.example.tetris.R
 import java.lang.Exception
 
 /**
@@ -40,8 +42,34 @@ data class Snake(var x: Int, var y: Int, var direction: Int, var list: MutableLi
     }
 
     fun drawOnBoard(board: Array<Array<TextView?>>) {
-        board[lastIndex[0]][lastIndex[1]]?.setBackgroundColor(Color.WHITE)
-        board[list[0][0]][list[0][1]]?.setBackgroundColor(Color.GREEN)
+        board[lastIndex[0]][lastIndex[1]]?.apply {
+            setBackgroundColor(Color.WHITE)
+            text = null
+        }
+        board[list[0][0]][list[0][1]]?.apply {
+            setBackgroundColor(Color.GREEN)
+            when (direction) {
+                0 -> {
+                    text = "↑"
+                }
+                1 -> {
+                    text = "→"
+                }
+                2 -> {
+                    text = "↓"
+                }
+                3 -> {
+                    text = "←"
+                }
+            }
+            setTextColor(Color.BLACK)
+            textSize = 20F
+            text
+        }
+        if (list.size >1) {
+            board[list[1][0]][list[1][1]]?.setBackgroundColor(Color.YELLOW)
+            board[list[1][0]][list[1][1]]?.text = null
+        }
     }
 
     private fun isSnakeEat(board: Board): Boolean {
@@ -50,7 +78,7 @@ data class Snake(var x: Int, var y: Int, var direction: Int, var list: MutableLi
 
     fun isMovable(board: Array<Array<TextView?>>, xx: Int, yy: Int): Boolean {
         try {
-            if ((board[xx+dx[direction]][yy+dy[direction]]?.background as ColorDrawable).color == Color.GREEN
+            if ((board[xx+dx[direction]][yy+dy[direction]]?.background as ColorDrawable).color == Color.YELLOW
             ) {
                 return false
             }

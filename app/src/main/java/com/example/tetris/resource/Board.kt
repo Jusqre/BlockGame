@@ -39,7 +39,11 @@ class Board(row: Int, private val column: Int) {
                         mContext.packageName ?: "com.example.tetris"
                     )
                 )
-                board[i][j]?.setBackgroundColor("#FFFFFF".toColorInt())
+                board[i][j]?.apply{
+                    setBackgroundColor("#FFFFFF".toColorInt())
+                    width = 0
+                    height = 0
+                }
                 current++
             }
         }
