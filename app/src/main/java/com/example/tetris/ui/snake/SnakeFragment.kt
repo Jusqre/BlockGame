@@ -64,7 +64,7 @@ class SnakeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        board.adapt(view,context,resources)
+        board.adapt(view, context, resources)
         board.initialize()
         var interval = 700L
 

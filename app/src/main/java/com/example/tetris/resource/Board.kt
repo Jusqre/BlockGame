@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.TextView
 import androidx.core.graphics.toColorInt
@@ -51,8 +52,15 @@ class Board(row: Int, private val column: Int) {
 
     fun makeSnakeFood() {
         if (foodCount == 0) {
-            board[Random.nextInt(1,10)][Random.nextInt(1,7)]?.setBackgroundColor(Color.RED)
-            foodCount++
+            while (true) {
+                val x = Random.nextInt(0,10)
+                val y = Random.nextInt(0,7)
+                if ((board[x][y]?.background as ColorDrawable).color == "#FFFFFF".toColorInt()) {
+                    board[x][y]?.setBackgroundColor(Color.RED)
+                    foodCount++
+                    break
+                }
+            }
         }
     }
 
