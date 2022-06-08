@@ -58,6 +58,10 @@ class SnakeFragment : Fragment() {
             snakeViewModel.drawOnBoard(board)
         }
 
+        snakeViewModel.score.observe(viewLifecycleOwner) {
+            binding.scoreBoard.text = it.toString()
+        }
+
         return root
     }
 

@@ -26,18 +26,20 @@ data class Snake(var x: Int, var y: Int, var direction: Int, var list: MutableLi
         direction = (direction + 3) % 4
     }
 
-    fun goStraight(board: Board) {
+    fun goStraight(board: Board): Int {
         if (!isSnakeEat(board)) {
             list.add(0, intArrayOf(x + dx[direction], y + dy[direction]))
             x += dx[direction]
             y+= dy[direction]
             lastIndex = list.last()
             list.removeLast()
+            return 0
         } else {
             list.add(0, intArrayOf(x + dx[direction], y + dy[direction]))
             x += dx[direction]
             y += dy[direction]
             board.foodCount = 0
+            return 10
         }
     }
 

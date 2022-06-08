@@ -14,6 +14,8 @@ class SnakeViewModel : ViewModel() {
         get() = _snake
 
     private val _score = MutableLiveData<Int>()
+    val score: LiveData<Int>
+        get() = _score
 
     init {
         _snake.postValue(
@@ -25,7 +27,7 @@ class SnakeViewModel : ViewModel() {
     fun goWithTime(board: Board) {
         _snake.value?.apply {
             if (isMovable(board.board, x,y)) {
-                goStraight(board)
+                _score.postValue(_score.value?.plus(goStraight(board)) ?: 0)
                 _snake.postValue(this)
             }
         }
